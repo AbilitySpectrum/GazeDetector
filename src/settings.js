@@ -26,7 +26,8 @@ function settings() {
     // Private variables
     let soundElem = document.querySelector("input[type=checkbox][value=sound]");
     let showElem = document.querySelector("input[type=checkbox][value=showMenu]");
-    let slider = makeSlider();
+    let slider = makeSlider(0, 3, 1.5, "scan");
+    let gazeSlider = makeSlider(0, 1, .6, "gaze");
     let emailSettings = makeEmailSettings();
     let layout = makeLayoutSettings();
     let language = makeLanguageSettings();
@@ -36,6 +37,7 @@ function settings() {
         useSound: () => soundElem.checked,
         getLanguageSettings: () => language,
         getScanSpeed: () => slider.getms(),
+        getGazeSpeed: () => gazeSlider.getms(),
         addShowMenuListener: (listener) =>
             showElem.addEventListener("change", listener),
         getEmailSettings: () => emailSettings,
@@ -45,24 +47,21 @@ function settings() {
     return that;
 }
 
-function makeSlider() {
+function makeSlider(vmin, vmax, vinit, name) {
     // Constructor for slider object. Relies on the jQuery UI toolkit to create
     // the slider element. Exports a single getter, which returns the value
     // of the sider.
 
     // Constants
-    const VMIN = 0;             // Min, max, and initial slider settings
-    const VMAX = 3;
-    const V0 = 1.5;
-    const SCALE = 10;
+    const SCALE = 100;
 
     // Internal variables and methods.
-    let sliderValue = V0;
-    let containerElem = document.getElementById("sliderContainer");
-    let sliderElem = document.getElementById("slider");
-    let valueElem = document.getElementById("sliderValue");
-    let s = jQuery(sliderElem).slider({ min: VMIN * SCALE,
-                                        max: VMAX * SCALE,
+    let sliderValue = vinit;
+    let containerElem = document.getElementById(name + "SliderContainer");
+    let sliderElem = document.getElementById(name + "Slider");
+    let valueElem = document.getElementById(name + "SliderValue");
+    let s = jQuery(sliderElem).slider({ min: vmin * SCALE,
+                                        max: vmax * SCALE,
                                         value: sliderValue * SCALE,
                                         slide: updateValue,
                                         change: updateValue });

@@ -23,7 +23,6 @@ function scanner(mainMenu, detector, settings, speaker) {
 
     // Constants
     const N_LOOPS = 2;               // Loop through a menu twice before exiting.
-    const SHORT_GAZE_TIME = 200;     // A short gaze must last for 200 ms
     const LONG_GAZE_TIME = 2000;     // A long gaze must last for 2 s.
     const BEEP_DURATION = 250;       // Length of beep informing of long gaze detection.
     const BEEP_FREQ = 300;           // The pitch of said beep.
@@ -122,7 +121,7 @@ function scanner(mainMenu, detector, settings, speaker) {
             // or invoke the callback passed in to scanMenu.
             clearTimeout(longGazeTimeout);
             let elapsed = new Date() - startTime;
-            if (elapsed >= SHORT_GAZE_TIME) {
+            if (elapsed >= settings.getGazeSpeed()) {
                 clearTimeout(timeout);
                 if (currentButton !== gazeButton) {
                     currentButton.toggle();
