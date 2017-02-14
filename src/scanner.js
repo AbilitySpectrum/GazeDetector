@@ -30,6 +30,7 @@ function scanner(mainMenu, detector, settings, speaker) {
     // Local variables
     let startButton = document.querySelector("input[type=button][name=start]");
     let stopButton = document.querySelector("input[type=button][name=stop]");
+    let started = true;
 
     // Procedures
     const signalLongGaze = () => speaker.beep(BEEP_FREQ, BEEP_DURATION);
@@ -106,6 +107,10 @@ function scanner(mainMenu, detector, settings, speaker) {
                   settings.getScanSpeed() * button.getWaitMultiplier();
         const register = () => registerListeners(gazeBegin, gazeEnd, pressStop);
         const unregister = () => unregisterListeners(gazeBegin, gazeEnd, pressStop);
+
+        //UI
+        let eventLengthValue = document.getElementById("eventLengthValue");
+
         function gazeBegin() {
             // Callback to execute if the beginning of a gaze was
             // detected. Store the button that was under point as well as the
@@ -121,6 +126,7 @@ function scanner(mainMenu, detector, settings, speaker) {
             // or invoke the callback passed in to scanMenu.
             clearTimeout(longGazeTimeout);
             let elapsed = new Date() - startTime;
+            eventLengthValue.textContent = `Last Event: ${elapsed} ms`;
             if (elapsed >= settings.getGazeSpeed()) {
                 clearTimeout(timeout);
                 if (currentButton !== gazeButton) {
@@ -128,6 +134,7 @@ function scanner(mainMenu, detector, settings, speaker) {
                 }
                 if (elapsed < LONG_GAZE_TIME) {
                     pressButton(gazeButton);
+
                 } else {
                     unregister();
                     cb();
@@ -141,6 +148,7 @@ function scanner(mainMenu, detector, settings, speaker) {
             currentButton.toggle();
             clearTimeout(timeout);
             detector.idleMode();
+            listening = false;
             speaker.speakSync({ en: "stopping.",
                                 fr: "arrêt" });
         }
@@ -215,13 +223,20 @@ function scanner(mainMenu, detector, settings, speaker) {
         loop(0, 0);
     }
 
+    let listening = false;
+    
     function listen() {
         // This function is invoked when the program starts. It awaits an
         // initial cue from the user, and when this cue is given it kicks off a
         // scan. When a scan is finished, the scanner reverts to listening.
+        if(listening) return;
+        else listening = true;
+
         let startTime, longGazeTimeout;
         const register = () => registerListeners(gazeBegin, gazeEnd, pressStop);
         const unregister = () => unregisterListeners(gazeBegin, gazeEnd, pressStop);
+        let eventLengthValue = document.getElementById("eventLengthValue");
+
         function gazeBegin() {
             // Beginning of gaze detected.
             startTime = new Date();
@@ -231,6 +246,7 @@ function scanner(mainMenu, detector, settings, speaker) {
             // End of gaze detected. If the gaze was long enough, start scanning.
             clearTimeout(longGazeTimeout);
             let elapsed = new Date() - startTime;
+            eventLengthValue.textContent = `Last Event: ${elapsed} ms`;
             if (elapsed >= LONG_GAZE_TIME) {
                 unregister();
                 scan();
@@ -242,8 +258,9 @@ function scanner(mainMenu, detector, settings, speaker) {
                                 fr: "arrêt" });
             unregister();
             detector.idleMode();
+            listening = false;
         }
-        speaker.speakSync({ en: "listening.",
+        speaker.speakSync({ en: "close eye to start.",
                             fr: "écoute" });
         detector.listenMode();
         register();

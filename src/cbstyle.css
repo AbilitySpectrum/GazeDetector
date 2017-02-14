@@ -99,7 +99,7 @@ table {
 }
 .buttonOn { /* Active button. */
   background-color: var(--blue);
-  color: var(--orange);
+  color: #ffffff;
   font-size: 200%;
 }
 .buttonOff { /* Inactive button. */
@@ -108,7 +108,7 @@ table {
 
 /* IO styling */
 #io {
-  height: 625px;
+  height: 725px;
   width: 1190px;
 }
 #bufferContainer {
@@ -144,7 +144,7 @@ table {
   font-size: 125%;
 }
 #controls {
-  height: 390px;
+  height: 490px;
   width: 690px;
 }
 #generalSettings {
@@ -158,7 +158,7 @@ table {
   width: 200px;
 }
 #emailSettings {
-  height: 330px;
+  height: 430px;
   width: 340px;
 }
 #userConfig {
