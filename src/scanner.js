@@ -249,7 +249,11 @@ function scanner(mainMenu, detector, settings, speaker) {
             eventLengthValue.textContent = `Last Event: ${elapsed} ms`;
             if (elapsed >= LONG_GAZE_TIME) {
                 unregister();
-                scan();
+                detector.scanMode();
+                scanMenu(mainMenu, () => {
+                    listening = false;
+                    listen();
+                })
             }
         }
         function pressStop() {

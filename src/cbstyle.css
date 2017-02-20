@@ -100,7 +100,6 @@ table {
 .buttonOn { /* Active button. */
   background-color: var(--blue);
   color: #ffffff;
-  font-size: 200%;
 }
 .buttonOff { /* Inactive button. */
   color: var(--blue);

@@ -87,7 +87,7 @@ function makeGenericDetector(spec, my) {
         emitter: new EventEmitter(),
         status: null,
         statusMap: { idle: {en: "idle", fr: "repos"},
-                     listening: {en: "listening", fr: "écoute"},
+                     listening: {en: "waiting", fr: "attendre"},
                      scanning: {en: "scanning", fr: "balayage"} }
     };
     Object.assign(my, myData);
