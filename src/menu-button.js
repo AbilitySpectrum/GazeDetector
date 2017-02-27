@@ -176,7 +176,7 @@ function makeGuessButton(spec, my) {
     let that = makeTextButton(spec, my);
 
     let myAssignment = {
-        waitMultiplier: 2
+        waitMultiplier: 1
     };
     Object.assign(my, myAssignment);
 

@@ -119,6 +119,7 @@ function scanner(mainMenu, detector, settings, speaker) {
             gazeButton = currentButton;
             startTime = new Date();
             longGazeTimeout = setTimeout(signalLongGaze, LONG_GAZE_TIME);
+            speaker.toneStart(settings.getGazeSpeed());
         }
         function gazeEnd() {
             // Callback to execute if the end of a gaze was detected. Depending
@@ -126,6 +127,7 @@ function scanner(mainMenu, detector, settings, speaker) {
             // or invoke the callback passed in to scanMenu.
             clearTimeout(longGazeTimeout);
             let elapsed = new Date() - startTime;
+            speaker.toneStop();
             eventLengthValue.textContent = `Last Event: ${elapsed} ms`;
             if (elapsed >= settings.getGazeSpeed()) {
                 clearTimeout(timeout);
@@ -253,7 +255,7 @@ function scanner(mainMenu, detector, settings, speaker) {
                 scanMenu(mainMenu, () => {
                     listening = false;
                     listen();
-                })
+                });
             }
         }
         function pressStop() {

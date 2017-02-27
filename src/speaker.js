@@ -111,6 +111,27 @@ function speaker(settings) {
         setTimeout(() => oscillator.stop(), duration);
     }
 
+    let risingTone = new Audio('rise.mp3');
+    let tonePlaying = false;
+    let timeout;
+
+    function toneStart(duration) {
+        const fudge = 50;
+
+        if(!tonePlaying) {
+            timeout = setTimeout(() => {toneStop(); beep(600, 100);}, duration - fudge);
+            risingTone.play();
+            tonePlaying = true;
+        }
+    }
+
+    function toneStop() {
+        clearTimeout(timeout);
+        risingTone.pause();
+        risingTone.currentTime = 0;
+        tonePlaying = false;
+    }
+
     // Register event listeners.
     settings.getLanguageSettings().addChangeListener(updateVoices); // If the user changes the language, change the voices.
     window.speechSynthesis.addEventListener("voiceschanged", initVoices); // Initialize voices once the page has loaded them.
@@ -118,5 +139,7 @@ function speaker(settings) {
     // Return an object with the relevant methods
     return { speakSync,
              speakAsync,
-             beep };
+             beep,
+             toneStart,
+             toneStop };
 }
