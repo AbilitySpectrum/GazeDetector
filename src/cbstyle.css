@@ -94,7 +94,7 @@ table {
 #menuContainer input[type=button] {
   height: 100%;
   width: 100%;
-  font-size: 150%;
+  font-size: 200%;
   font-weight: bold;
 }
 .buttonOn { /* Active button. */
@@ -103,6 +103,10 @@ table {
 }
 .buttonOff { /* Inactive button. */
   color: var(--blue);
+}
+.commandButton {
+  background-color: var(--red);
+  color: #ffffff;
 }
 
 /* IO styling */

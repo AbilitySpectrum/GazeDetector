@@ -17,75 +17,10 @@
         <!-- The main 5 rows of the commboard -->
         <div class="padBottom borderLine borderBottom hideable">
           <table><tbody>
-            <tr> <!-- Letters. This and the next 3 rows. -->
-              <td><input type="button" class="buttonOff" value="1"
-                         data-menu="composeMain" data-button-type="menuSelector" data-target="letter1"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
-            </tr>
-            <tr>
-              <td><input type="button" class="buttonOff" value="2"
-                         data-menu="composeMain" data-button-type="menuSelector" data-target="letter2"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
-            </tr>
-            <tr>
-              <td><input type="button" class="buttonOff" value="3"
-                         data-menu="composeMain" data-button-type="menuSelector" data-target="letter3"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
-            </tr>
-            <tr>
-              <td><input type="button" class="buttonOff" value="4"
-                         data-menu="composeMain" data-button-type="menuSelector" data-target="letter4"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter""></td>
-              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
-              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
-            </tr>
-            <!-- The special function row. -->
-            <tr>
-              <td><input type="button" class="buttonOff" value="5"
-                         data-menu="composeMain" data-button-type="menuSelector" data-target="extras"></td>
-              <td><input type="button" class="buttonOff" data-languages='{"en": "Space", "fr": "Espace"}'
-                         data-menu="extras" data-button-type="space"></td>
-              <td><input type="button" class="buttonOff" data-languages='{"en": "Punctuation", "fr": "Ponctuation"}'
-                         data-menu="extras" data-button-type="menuSelector" data-target="punctuation"></td>
-              <td><input type="button" class="buttonOff" data-languages='{"en": "Guess", "fr": "Deviner"}'
-                         data-menu="extras" data-button-type="menuSelector" data-target="guess"></td>
-              <td><input type="button" class="buttonOff" data-languages='{"en": "Text", "fr": "Texte"}';
-                         data-menu="extras" data-button-type="menuSelector" data-target="buffer"></td>
-              <td><input type="button" class="buttonOff" data-languages='{"en": "Email", "fr": "Email"}'
-                         data-menu="extras" data-button-type="menuSelector" data-target="email"></td>
-              <td><input type="button" class="buttonOff" data-languages='{"en": "Call Bell", "fr": "Cloche"}'
-                         data-menu="extras" data-button-type="callBell" data-target="callBell"></td>
-              <td><input type="button" class="buttonOff" data-languages='{"en": "Morse", "fr": "Morse"}'
-                         data-menu="extras" data-button-type="notImplemented"></td>
-            </tr>
-          </tbody></table>
-        </div>
         <!-- Guesses -->
-        <div class="padTop borderLine borderBottom">
-          <table><tbody>
             <tr id="guess">
+              <td><input type="button" class="buttonOff commandButton" data-languages='{"en": "Guess", "fr": "Deviner"}'
+                         data-menu="composeMain" data-button-type="menuSelector" data-target="guess"></td>
               <td><input type="button" class="buttonOff" value=""
                          data-menu="guess" data-button-type="guess" data-guess-id="0"></td>
               <td><input type="button" class="buttonOff" value=""
@@ -100,8 +35,67 @@
                          data-menu="guess" data-button-type="guess" data-guess-id="5"></td>
               <td><input type="button" class="buttonOff" value=""
                          data-menu="guess" data-button-type="guess" data-guess-id="6"></td>
-              <td><input type="button" class="buttonOff" value=""
-                         data-menu="guess" data-button-type="guess" data-guess-id="7"></td>
+            </tr>
+            <tr> <!-- Letters. This and the next 3 rows. -->
+              <td><input type="button" class="buttonOff commandButton" value="1"
+                         data-menu="composeMain" data-button-type="menuSelector" data-target="letter1"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter1" data-button-type="letter"></td>
+            </tr>
+            <tr>
+              <td><input type="button" class="buttonOff commandButton" value="2"
+                         data-menu="composeMain" data-button-type="menuSelector" data-target="letter2"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter2" data-button-type="letter"></td>
+            </tr>
+            <tr>
+              <td><input type="button" class="buttonOff commandButton" value="3"
+                         data-menu="composeMain" data-button-type="menuSelector" data-target="letter3"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter3" data-button-type="letter"></td>
+            </tr>
+            <tr>
+              <td><input type="button" class="buttonOff commandButton" value="4"
+                         data-menu="composeMain" data-button-type="menuSelector" data-target="letter4"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
+              <td><input type="button" class="buttonOff" data-menu="letter4" data-button-type="letter"></td>
+            </tr>
+            <!-- The special function row. -->
+            <tr>
+              <td><input type="button" class="buttonOff commandButton" value="5"
+                         data-menu="composeMain" data-button-type="menuSelector" data-target="extras"></td>
+              <td><input type="button" class="buttonOff commandButton" data-languages='{"en": "Speak", "fr": "Parler"}'
+                         data-menu="extras" data-button-type="bufferAction" data-buffer-action="read"></td>
+              <td><input type="button" class="buttonOff" data-languages='{"en": "Space", "fr": "Espace"}'
+                         data-menu="extras" data-button-type="space"></td>
+              <td><input type="button" class="buttonOff commandButton" data-languages='{"en": "Punctuation", "fr": "Ponctuation"}'
+                         data-menu="extras" data-button-type="menuSelector" data-target="punctuation"></td>
+              <td><input type="button" class="buttonOff commandButton" data-languages='{"en": "Text", "fr": "Texte"}';
+                         data-menu="extras" data-button-type="menuSelector" data-target="buffer"></td>
+              <td><input type="button" class="buttonOff commandButton" data-languages='{"en": "Email", "fr": "Email"}'
+                         data-menu="extras" data-button-type="menuSelector" data-target="email"></td>
+              <td><input type="button" class="buttonOff commandButton" data-languages='{"en": "Call Bell", "fr": "Cloche"}'
+                         data-menu="extras" data-button-type="callBell" data-target="callBell"></td>
             </tr>
           </tbody></table>
         </div>
@@ -129,8 +123,6 @@
             </tr>
             <!-- Buffer actions (e.g. read, delete, clear). -->
             <tr id="buffer">
-              <td><input type="button" class="buttonOff" data-languages='{"en": "Speak", "fr": "Parler"}'
-                         data-menu="buffer" data-button-type="bufferAction" data-buffer-action="read"></td>
               <td><input type="button" class="buttonOff"  data-languages='{"en": "Delete", "fr": "Rayer"}'
                          data-menu="buffer" data-button-type="bufferAction" data-buffer-action="delete"></td>
               <td><input type="button" class="buttonOff"  data-languages='{"en": "Clear", "fr": "Clair"}'
