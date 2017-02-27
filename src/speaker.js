@@ -115,6 +115,8 @@ function speaker(settings) {
     let tonePlaying = false;
     let timeout;
 
+    //Ryan Campbell 2/27/2017
+    //Start playing the rising tone and end with a beep after duration ms.
     function toneStart(duration) {
         const fudge = 50;
 
@@ -125,6 +127,8 @@ function speaker(settings) {
         }
     }
 
+    //Ryan Campbell 2/27/2017
+    //Silence the rising tone.
     function toneStop() {
         clearTimeout(timeout);
         risingTone.pause();

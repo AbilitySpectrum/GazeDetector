@@ -110,6 +110,14 @@ function scanner(mainMenu, detector, settings, speaker) {
 
         //UI
         let eventLengthValue = document.getElementById("eventLengthValue");
+        //Ryan Campbell 2/27/2017
+        //highlights the row of button if we are scanning throught the rows of the commboard
+        function rowHighlight(button) {
+
+            if(menu === mainMenu) {
+                button.buttonElem.parentElement.parentElement.classList.toggle("rowHighlight");
+            }
+        }
 
         function gazeBegin() {
             // Callback to execute if the beginning of a gaze was
@@ -133,6 +141,7 @@ function scanner(mainMenu, detector, settings, speaker) {
                 clearTimeout(timeout);
                 if (currentButton !== gazeButton) {
                     currentButton.toggle();
+                    rowHighlight(currentButton);
                 }
                 if (elapsed < LONG_GAZE_TIME) {
                     pressButton(gazeButton);
@@ -148,6 +157,7 @@ function scanner(mainMenu, detector, settings, speaker) {
             // scan and return to idle.
             unregister();
             currentButton.toggle();
+            rowHighlight(currentButton);
             clearTimeout(timeout);
             detector.idleMode();
             listening = false;
@@ -161,6 +171,7 @@ function scanner(mainMenu, detector, settings, speaker) {
             unregister();
             if (currentButton === gazeButton) {
                 button.toggle();
+                rowHighlight(button);
             }
             let bcb = makeButtonCallback(button);
             button.addFinishedListener(bcb);
@@ -211,11 +222,15 @@ function scanner(mainMenu, detector, settings, speaker) {
             // A single step in the scan.
             currentButton = button;
             button.toggle();
+            rowHighlight(button);
             button.announce();
             let waitTime = getWaitTime(button);
             let next = function() {
                 button.toggle();
                 loop(nextButton(buttonIx), nextLoop(buttonIx, loopIx));
+                if(menu === mainMenu) {
+                    button.buttonElem.parentElement.parentElement.classList.toggle("rowHighlight");
+                }
             };
             timeout = setTimeout(next, waitTime);
         }

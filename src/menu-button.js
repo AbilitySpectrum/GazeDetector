@@ -75,6 +75,7 @@ function makeGenericButton(spec, my) {
         isEmpty: () => my.buttonElem.value === "",
         getWaitMultiplier: () => my.waitMultiplier,
         getTargetMenu: () => null, // MenuButtons overwrite this.
+        buttonElem: my.buttonElem,
         announce: function() {
             // Have the button state its name.
             if (my.settings.useSound()) {

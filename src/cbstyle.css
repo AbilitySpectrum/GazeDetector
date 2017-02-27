@@ -97,16 +97,19 @@ table {
   font-size: 200%;
   font-weight: bold;
 }
-.buttonOn { /* Active button. */
-  background-color: var(--blue);
-  color: #ffffff;
-}
 .buttonOff { /* Inactive button. */
   color: var(--blue);
 }
 .commandButton {
   background-color: var(--red);
   color: #ffffff;
+}
+.buttonOn { /* Active button. */
+  background-color: var(--blue);
+  color: #ffffff;
+}
+.rowHighlight {
+  background-color: var(--red);
 }
 
 /* IO styling */
