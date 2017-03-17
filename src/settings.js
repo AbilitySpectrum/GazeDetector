@@ -243,14 +243,26 @@ function makeLanguageSettings() {
         // Update all buttons for the new language.
         let buttons = document.querySelectorAll("input[type=button][data-languages]");
         buttons.forEach(
-            (button) => button.value = JSON.parse(button.dataset.languages)[lang]
+            (button) =>  { 
+                button.value = JSON.parse(button.dataset.languages)[lang];
+                if( button.value == "undefined" ) {
+                    button.value = JSON.parse(button.dataset.languages)["en"];
+                }
+                return button.value;
+            }
         );
     }
     function updateText(lang) {
         // Update all text (anything that isn't a button) for the new language.
         let elems = document.querySelectorAll("[data-languages]:not(input)");
         elems.forEach(
-            (elem) => elem.innerText = JSON.parse(elem.dataset.languages)[lang]
+            (elem) => {
+                elem.innerText = JSON.parse(elem.dataset.languages)[lang];
+                if( elem.innerText == "undefined") {
+                    elem.innerText = JSON.parse(elem.dataset.languages)["en"] + " (sic)";
+                }
+                return elem.innerText;
+            }
         );
     }
 
