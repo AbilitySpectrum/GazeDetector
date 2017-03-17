@@ -162,7 +162,8 @@ function scanner(mainMenu, detector, settings, speaker) {
             detector.idleMode();
             listening = false;
             speaker.speakSync({ en: "stopping.",
-                                fr: "arrêt" });
+                                fr: "arrêt",
+                                es: "parar"});
         }
         function pressButton(button) {
             // Invoke the action of a given button. Create a callback to execute
@@ -276,13 +277,15 @@ function scanner(mainMenu, detector, settings, speaker) {
         function pressStop() {
             // If an assistant pressed the stop button, tell the detector to stop listening for input.
             speaker.speakSync({ en: "stopping.",
-                                fr: "arrêt" });
+                                fr: "arrêt",
+                                es: "parar"});
             unregister();
             detector.idleMode();
             listening = false;
         }
         speaker.speakSync({ en: "close eye to start.",
-                            fr: "écoute" });
+                            fr: "écoute",
+                            es: "larga mirada"});
         detector.listenMode();
         register();
     }

@@ -33,7 +33,8 @@ function speaker(settings) {
     function demo() {
         // Speak a demo with the current voice.
         const msg = { en: `Hello, my name is ${voice.name}`,
-                      fr: `Bonjour, mon nom est ${voice.name}`};
+                      fr: `Bonjour, mon nom est ${voice.name}`,
+                      es: `Hola, me llamo ${voice.name}`};
         speakSync(msg[getLanguage()], voice);
     }
     function clearVoices() {
@@ -81,6 +82,10 @@ function speaker(settings) {
         //           text. The speaker asks the settings object for the current
         //           language and looks up the correct text for this langauge.
         let toSpeak = _.isString(text) ? text : text[getLanguage()];
+        
+        if( toSpeak == "undefined" ) {
+            toSpeak = text["en"];
+        }
         let utterance = new window.SpeechSynthesisUtterance(toSpeak.toLowerCase());
         utterance.lang = getLanguage();
         utterance.voice = voice;
