@@ -213,6 +213,7 @@ function makeGazeDetector(spec, my) {
                 my.emitGestureEnd();      // If we went from gaze to rest, then the gaze ended.
             }
             my.state = newState;
+            util.setDebug( "dRest: " + util.format("# ### ###.", dRest) + "   dGaze: " + util.format("# ### ###.", dGaze) );
         }
     };
     Object.assign(my, myMethods);
