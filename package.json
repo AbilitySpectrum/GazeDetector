@@ -13,8 +13,9 @@
     "jquery": "^2.2.4",
     "jquery-ui": "1.10.5",
     "nodemailer": "^2.3.0",
+    "underscore": "^1.8.3",
     "number-format.js": "^1.1.11",
-    "underscore": "^1.8.3"
+	"fs": "^0.1.29"
   },
   "scripts": {
     "lint": "jshint src/*.js",
