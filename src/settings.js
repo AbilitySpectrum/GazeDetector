@@ -6,7 +6,7 @@ require("jquery-ui");
 const EventEmitter = require("events");
 const util = require("./util");
 const _ = require("underscore");
-const fs=require('fs');
+const fs = require('fs');
 
 // This module exposes the procedure "settings", the constructor for the
 // settings object. The settings object exposes the settings passed in from the
@@ -17,8 +17,8 @@ const fs=require('fs');
 // slider), and an object that handles email settings.
 
 /*
-*   Updates: (28/03/2017)   Purpose: Implementation of the functionality
-*   to save the scan speed and blink speed settings locally.
+ *   Updates: (28/03/2017)   Purpose: Implementation of the functionality
+ *   to save the scan speed and blink speed settings locally.
  */
 
 // Exports
@@ -63,18 +63,20 @@ function makeSlider(vmin, vmax, vinit, name) {
 
     //Read local preferences
     //It will be used only in the construction of the slider
-    let preferences=readPreferences();
+    let preferences = readPreferences();
 
     // Internal variables and methods.
-    let sliderValue = preferences[name]||vinit; //If this did not have the property 'name' use 'vinit'
+    let sliderValue = preferences[name] || vinit; //If this did not have the property 'name' use 'vinit'
     let containerElem = document.getElementById(name + "SliderContainer");
     let sliderElem = document.getElementById(name + "Slider");
     let valueElem = document.getElementById(name + "SliderValue");
-    let s = jQuery(sliderElem).slider({ min: vmin * SCALE,
-                                        max: vmax * SCALE,
-                                        value: sliderValue * SCALE,
-                                        slide: updateValue,
-                                        change: updateValue });
+    let s = jQuery(sliderElem).slider({
+        min: vmin * SCALE,
+        max: vmax * SCALE,
+        value: sliderValue * SCALE,
+        slide: updateValue,
+        change: updateValue
+    });
 
     function updateValue() {
         // Callback to be invoked when the user changes the slider value.
@@ -87,26 +89,24 @@ function makeSlider(vmin, vmax, vinit, name) {
     /*
      *      This allows the user to save some preferences
      */
-    function savePreferences(){
+    function savePreferences() {
         //Read local preferences
-        let preferences=readPreferences();
-        preferences[name]=sliderValue;
-        try{
+        let preferences = readPreferences();
+        preferences[name] = sliderValue;
+        try {
             fs.writeFileSync("./preferences.json", JSON.stringify(preferences));
-        }
-        catch (e){
+        } catch (e) {
 
         }
     }
     /*
      *      This restores user preferences already saved
      */
-    function readPreferences(){
-        try{
-            let data=fs.readFileSync("./preferences.json");
+    function readPreferences() {
+        try {
+            let data = fs.readFileSync("./preferences.json");
             return JSON.parse(data);
-        }
-        catch (e){
+        } catch (e) {
             return {};
         }
     }
@@ -143,6 +143,7 @@ function makeEmailSettings() {
     let emitter = new EventEmitter();
 
     const emitAddRecipient = () => emitter.emit("addRecipient");
+
     function store() {
         // Store user email information.
         signature = signatureField.value;
@@ -158,7 +159,7 @@ function makeEmailSettings() {
         getPassword: () => password,
         getRecipientName: () => recipientNameField.value,
         getRecipientAddress: () => recipientAddressField.value.split(" "),
-        clearRecipientInfo: function() {
+        clearRecipientInfo: function () {
             recipientNameField.value = "";
             recipientAddressField.value = "";
         },
@@ -184,8 +185,8 @@ function makeLayoutSettings() {
     // the commboard.
 
     // Constants.
-    const NCOLS = 7;            // 7 columns (i.e. 7 letters) per row.
-    const EMPTY_LETTER = "";    // How to fill a button if there's no letter for it.
+    const NCOLS = 7; // 7 columns (i.e. 7 letters) per row.
+    const EMPTY_LETTER = ""; // How to fill a button if there's no letter for it.
 
     // Internal variables and methods.
     let layoutElem = document.querySelector("select[name=layout]");
@@ -199,6 +200,7 @@ function makeLayoutSettings() {
                ["n", "r", "u", "g", "v", "x"],
                ["d", "m", "y", "k", "q", "z"]]
     };
+
     function initLayouts() {
         // Invoked on object creation to make all layouts available in UI menu.
         function each(layoutName) {
@@ -212,15 +214,15 @@ function makeLayoutSettings() {
 
     // Returned object.
     let that = {
-        addChangeListener: function(listener) {
+        addChangeListener: function (listener) {
             // Allows menus to register event handlers that update their buttons
             // when the uesr selects a new layout.
             layoutElem.addEventListener("change", listener);
         },
-        getLetters: function(row) {
+        getLetters: function (row) {
             // Get the letters for row i, given the current layout.
             let layout = layouts[layoutElem.value];
-            return util.pad(layout[row-1], EMPTY_LETTER, NCOLS); // The rows names for the commboard are 1-indexed.
+            return util.pad(layout[row - 1], EMPTY_LETTER, NCOLS); // The rows names for the commboard are 1-indexed.
         }
     };
 
@@ -276,26 +278,28 @@ function makeLanguageSettings() {
         updateButtons(lang);
         updateText(lang);
     }
+
     function updateButtons(lang) {
         // Update all buttons for the new language.
         let buttons = document.querySelectorAll("input[type=button][data-languages]");
-        buttons.forEach(
-            (button) =>  { 
+        [].forEach.call(
+            buttons, (button) => {
                 button.value = JSON.parse(button.dataset.languages)[lang];
-                if( button.value == "undefined" ) {
+                if (button.value == "undefined") {
                     button.value = JSON.parse(button.dataset.languages)["en"];
                 }
                 return button.value;
             }
         );
     }
+
     function updateText(lang) {
         // Update all text (anything that isn't a button) for the new language.
         let elems = document.querySelectorAll("[data-languages]:not(input)");
-        elems.forEach(
-            (elem) => {
+        [].forEach.call(
+            elems, (elem) => {
                 elem.innerText = JSON.parse(elem.dataset.languages)[lang];
-                if( elem.innerText == "undefined") {
+                if (elem.innerText == "undefined") {
                     elem.innerText = JSON.parse(elem.dataset.languages)["en"] + " (sic)";
                 }
                 return elem.innerText;
